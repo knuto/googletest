@@ -651,6 +651,10 @@ class GTEST_API_ TestResult {
   // Increments the successful assert count, returning the new count.
   int increment_success_assert_count(int v = 1) { return success_assert_count_ += v; }
 
+  // Set/get executed flag.
+  bool was_executed() const { return executed_; }
+  void set_executed() { executed_ = true; }
+
   // Clears the test part results.
   void ClearTestPartResults();
 
@@ -669,6 +673,10 @@ class GTEST_API_ TestResult {
   int death_test_count_;
   // Running count of number of successful asserts.
   int success_assert_count_;
+
+  // Set if test has been executed
+  bool executed_;
+
   // The elapsed time, in milliseconds.
   TimeInMillis elapsed_time_;
 
@@ -744,6 +752,8 @@ class GTEST_API_ TestInfo {
   // For example, *A*:Foo.* is a filter that matches any string that
   // contains the character 'A' or starts with "Foo.".
   bool should_run() const { return should_run_; }
+
+  bool was_executed() const { return result_.was_executed(); }
 
   // Returns true iff this test will appear in the XML report.
   bool is_reportable() const {
@@ -884,6 +894,9 @@ class GTEST_API_ TestSuite {
   // Get the number of tests in this test suite that should run.
   int test_to_run_count() const;
 
+  // Gets the number of tests that actually ran.
+  int test_was_run_count() const;
+
   // Gets the number of all tests in this test suite.
   int total_test_count() const;
 
@@ -956,7 +969,7 @@ class GTEST_API_ TestSuite {
 
   // Returns true iff test passed.
   static bool TestPassed(const TestInfo* test_info) {
-    return test_info->should_run() && test_info->result()->Passed();
+    return test_info->was_executed() && test_info->result()->Passed();
   }
 
   // Returns true iff test skipped.
@@ -966,7 +979,7 @@ class GTEST_API_ TestSuite {
 
   // Returns true iff test failed.
   static bool TestFailed(const TestInfo* test_info) {
-    return test_info->should_run() && test_info->result()->Failed();
+    return test_info->was_executed() && test_info->result()->Failed();
   }
 
   // Returns true iff the test is disabled and will be reported in the XML
@@ -988,6 +1001,11 @@ class GTEST_API_ TestSuite {
   // Returns true if the given test should run.
   static bool ShouldRunTest(const TestInfo* test_info) {
     return test_info->should_run();
+  }
+
+  // Returns true if the given test was run.
+  static bool WasRunTest(const TestInfo* test_info) {
+    return test_info->was_executed();
   }
 
   // Shuffles the tests in this test suite.
@@ -1335,8 +1353,14 @@ class GTEST_API_ UnitTest {
   // Gets the number of all tests.
   int total_test_count() const;
 
+  // Gets the number of actually exectued tests.
+  int test_executed_count();
+
   // Gets the number of tests that should run.
   int test_to_run_count() const;
+
+  // Gets the number of tests that was actually run.
+  int test_was_run_count() const;
 
   // Gets the time of the test program start, in ms from the start of the
   // UNIX epoch.
