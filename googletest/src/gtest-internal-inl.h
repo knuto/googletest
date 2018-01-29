@@ -577,6 +577,10 @@ class GTEST_API_ UnitTestImpl {
   // Gets the elapsed time, in milliseconds.
   TimeInMillis elapsed_time() const { return elapsed_time_; }
 
+  int increment_success_assert_count(int v = 1) {
+    return current_test_info_ ? current_test_info_->increment_success_assert_count(v) : 0;
+  }
+
   // Returns true iff the unit test passed (i.e. all test suites passed).
   bool Passed() const { return !Failed(); }
 
