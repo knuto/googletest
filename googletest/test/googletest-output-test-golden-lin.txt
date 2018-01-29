@@ -12,7 +12,7 @@ Expected equality of these values:
   3
 Stack trace: (omitted)
 
-[0;32m[==========] [mRunning 83 tests from 38 test suites.
+[0;32m[==========] [mRunning 84 tests from 39 test suites.
 [0;32m[----------] [mGlobal test environment set-up.
 FooEnvironment::SetUp() called.
 BarEnvironment::SetUp() called.
@@ -958,6 +958,9 @@ Expected equality of these values:
 Stack trace: (omitted)
 
 [0;31m[  FAILED  ] [mPrintingFailingParams/FailingParamTest.Fails/0, where GetParam() = 2, 1 assertions
+[0;32m[----------] [m1 test from EmptyBasenameParamInst
+[0;32m[ RUN      ] [mEmptyBasenameParamInst.Passes/0
+[0;32m[       OK ] [mEmptyBasenameParamInst.Passes/0, 1 assertions
 [0;32m[----------] [m2 tests from PrintingStrings/ParamTest
 [0;32m[ RUN      ] [mPrintingStrings/ParamTest.Success/a
 [0;32m[       OK ] [mPrintingStrings/ParamTest.Success/a, 1 assertions
@@ -984,8 +987,8 @@ Failed
 Expected fatal failure.
 Stack trace: (omitted)
 
-[0;32m[==========] [m83 tests from 38 test suites ran.
-[0;32m[  PASSED  ] [m30 tests.
+[0;32m[==========] [m84 tests from 39 test suites ran.
+[0;32m[  PASSED  ] [m31 tests.
 [0;31m[  FAILED  ] [m53 tests, listed below:
 [0;31m[  FAILED  ] [mNonfatalFailureTest.EscapesStringOperands
 [0;31m[  FAILED  ] [mNonfatalFailureTest.DiffForLongStrings
@@ -1107,7 +1110,7 @@ Stack trace: (omitted)
 [  FAILED  ] LoggingTest.InterleavingLoggingAndAssertions
 
  4 FAILED TESTS
-  YOU HAVE 80 FILTERED OUT TESTS
+  YOU HAVE 81 FILTERED OUT TESTS
 
 Note: Google Test filter = *DISABLED_*
 [==========] Running 1 test from 1 test suite.
@@ -1119,7 +1122,7 @@ Note: Google Test filter = *DISABLED_*
 [==========] 1 test from 1 test suite ran.
 [  PASSED  ] 1 test.
 
-  YOU HAVE 83 FILTERED OUT TESTS
+  YOU HAVE 84 FILTERED OUT TESTS
 
 Note: Google Test filter = PassingTest.*
 Note: This is test shard 2 of 2.
@@ -1132,5 +1135,5 @@ Note: This is test shard 2 of 2.
 [==========] 1 test from 1 test suite ran.
 [  PASSED  ] 1 test.
 
-  YOU HAVE 83 FILTERED OUT TESTS
+  YOU HAVE 84 FILTERED OUT TESTS
 
